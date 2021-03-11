@@ -1,0 +1,392 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Flex Properties</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" charset="utf-8">
+    <style>
+        .flex-me{
+            display: flex;
+            background-color: azure;
+            border: thin solid teal;
+            border-radius: 5px;
+            min-height: 150px;
+        }
+        .flex-me>div{
+            width: 75px;
+            min-height: 75px;
+            background-color: teal;
+            border-radius: 5px;
+        }
+        .flex-me>div:nth-child(2n){
+            background-color: firebrick;
+            min-height: 100px;
+        }
+        .flex-me.flex-wrap-demo{
+            width: 50%;
+            min-height: 300px;
+        }
+        .flex-me.align-content-demo{
+            width: 50%;
+            min-height: 300px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Flex Properties</h1>
+    <p>With flex, you'll discover that far less CSS is required to achieve
+        certain layouts</p>
+
+    <p>The <strong>flex container</strong> behaves like a block element for the
+        most part. It'll take up the entire width available by default. It's its
+        children, <strong>flex items</strong>, that have special behaviour.
+        Think of the <strong>flex container</strong> as the choreographer and
+        <strong>flex items</strong>, its dancers.
+    </p>
+    <h2>Flex Container</h2>
+    <h3>Default</h3>
+    <div class="flex-me">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>align-items: </strong> flex-start</pre>
+    <div class="flex-me" style="align-items:flex-start;">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>align-items: </strong> flex-end</pre>
+    <div class="flex-me" style="align-items:flex-end;">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>align-items: </strong> stretch (DEFAULT)</pre>
+    <div class="flex-me" style="align-items:stretch;">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>align-items: </strong> center</pre>
+    <div class="flex-me" style="align-items:center;">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> center</pre>
+    <div class="flex-me" style="justify-content: center;align-items:center;">
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> flex-start (DEFAULT)</pre>
+    <div class="flex-me" style="justify-content: flex-start;align-items:center;">
+                <!-- This will work horizontally -->
+
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> flex-end </pre>
+    <div class="flex-me" style="justify-content: flex-end;align-items:center;">
+                <!-- This will work horizontally -->
+
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> space-between </pre>
+    <div class="flex-me" style="justify-content: space-between;align-items:center;">
+                <!-- This will work horizontally -->
+
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> space-around </pre>
+    <div class="flex-me" style="justify-content: space-around;align-items:center;">
+        <!-- space-around uses actual space diveded by six the initial left and right space is  half of middle space-->
+                <!-- This will work horizontally -->
+
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>justify-content: </strong> space-evenly </pre>
+    <div class="flex-me" style="justify-content: space-evenly;align-items:center;">
+        <!-- The sapce is evenly divided on extreme right, extreme left and middle of the items -->
+        <!-- This will work horizontally -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>flex-wrap: </strong> wrap </pre>
+    <!-- the wrap values specifies that the flex items will be wrapped in multiple lines -->
+    <div class="flex-me flex-wrap-demo" style="flex-wrap: wrap;align-items:center;">
+        <!-- The sapce is evenly divided on extreme right, extreme left and middle of the items -->
+        <!-- This will work horizontally -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>flex-wrap: </strong> nowrap (DEFAULT) </pre>
+    <!-- the nowrap value specifies that the flex item will not wrap - this is default -->
+    <div class="flex-me flex-wrap-demo" style="flex-wrap: nowrap;align-items:center;">
+        <!-- The sapce is evenly divided on extreme right, extreme left and middle of the items -->
+        <!-- This will work horizontally -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <pre><strong>flex-wrap: </strong> wrap-reverse </pre>
+    <!-- the wrap-reverse value specifies that the flexible items will wrap (if necessary) in reverse order-->
+    <div class="flex-me flex-wrap-demo" style="flex-wrap: wrap-reverse;align-items:center;">
+        <!-- The sapce is evenly divided on extreme right, extreme left and middle of the items -->
+        <!-- This will work horizontally -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>align-content: </strong> stretch (DEFAULT) </pre>
+    <!-- the stretch value stretches the flex lines to take up the remaining space-->
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: stretch;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>align-content: </strong> flex-start  </pre>
+    <!-- it dispalys the values at the start of the container -->
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: flex-start;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>align-content: </strong> flex-end  </pre>
+    <!-- the flex -end value displays the flex line at the end of the container -->
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: flex-end;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+
+    <pre><strong>align-content: </strong> center  </pre>
+    <!-- the center value displays the flex line in the middle of the container -->
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: center;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>align-content: </strong> space-between  </pre>
+    <!-- it displays the equal space in between the lines -->
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: space-between;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>align-content: </strong> space-around  </pre>
+    
+    <div class="flex-me align-content-demo" style="flex-wrap: wrap; align-content: space-around;">
+        <!-- The stretch value stretches the flex lines to take up the remaining space -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <pre><strong>flex-direction: </strong> row  </pre>
+    
+    <div class="flex-me" style="flex-direction: row;">
+        <!-- the row valuse stack the items horizontally (from left to right) -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        
+    </div>
+    <pre><strong>flex-direction: </strong> column  </pre>
+    
+    <div class="flex-me" style="flex-direction: column;">
+        <!-- the column value stack the items vertically (from top to bottom) -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        
+    </div>
+    <pre><strong>flex-direction: </strong> column-reverse  </pre>
+    
+    <div class="flex-me" style="flex-direction: column-reverse;">
+        <!-- the column-reverse value stack the items vertically (from bottom to top) -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        
+    </div>
+    <pre><strong>flex-direction: </strong> row-reverse  </pre>
+    
+    <div class="flex-me" style="flex-direction: row-reverse;">
+        <!-- the row-reverse value stack the items horizontally (from right to left) -->
+        <!-- 👈🏻 Applying css to make flex container -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        
+    </div>
+    
+</body>
+
+</html>
