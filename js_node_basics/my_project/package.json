@@ -1,0 +1,29 @@
+{
+  "name": "my_new_project",
+  "version": "1.0.0",
+  "description": "Demo for node js project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CodeCoreYVR/class_demos_bootcamp_march_2021.git"
+  },
+  "keywords": [
+    "demo",
+    "learning",
+    "node",
+    "js"
+  ],
+  "author": "Naveed Raza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeCoreYVR/class_demos_bootcamp_march_2021/issues"
+  },
+  "homepage": "https://github.com/CodeCoreYVR/class_demos_bootcamp_march_2021#readme",
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "qrcode": "^1.4.4"
+  }
+}
