@@ -1,0 +1,22 @@
+{
+  "name": "knex_demo",
+  "version": "1.0.0",
+  "description": "knex demo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "knex",
+    "sql"
+  ],
+  "author": "Naveed",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.95.2",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "faker": "^5.4.0"
+  }
+}
