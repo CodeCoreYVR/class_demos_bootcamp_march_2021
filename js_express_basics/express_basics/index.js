@@ -22,11 +22,20 @@ app.set('views','views')
 
 app.get('/',(request,response)=>{
     //your code here
-    response.send('<h1>Welcome</h1>');
+    // response.send('<h1>Welcome</h1>');
+    response.render('welcome',{
+        title: 'Welcome to Meme Page',
+        memes:[
+            "https://www.probytes.net/wp-content/uploads/2018/01/2.jpg",
+      "https://www.probytes.net/wp-content/uploads/2018/01/20.png",
+      "https://www.probytes.net/wp-content/uploads/2018/01/r_389776_tqMPa-1.jpg"
+        ] 
+    })
 });
 app.get('/hello_world',(request,response)=>{
     //your code here
-    response.send('<h1>Hello World</h1><p>Welcome to the coding</p>');
+    // response.send('<h1>Hello World</h1><p>Welcome to the coding</p>');
+    response.render('hello_world')
 });
 app.get('/survey',(request,response)=>{
     //your code here
