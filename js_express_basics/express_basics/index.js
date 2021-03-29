@@ -38,10 +38,21 @@ app.get('/hello_world',(request,response)=>{
     response.render('hello_world')
 });
 app.get('/survey',(request,response)=>{
-    //your code here
-    response.send('<h1>My Survey Page</h1>');
+    
+    response.render('survey');
 });
 
+app.get('/submit',(req,res)=>{
+    console.log('URL Query:', req.query);
+    const fullName=req.query.fullName;
+    const favouriteColor=req.query.favouritColor;
+    const message=req.query.message;
+    res.render('thank_you',{
+        fullName:fullName,
+        favouriteColor:favouriteColor,
+        message:message
+    });
+});
 
 
 const PORT=3000;
@@ -50,3 +61,11 @@ const DOMAIN='localhost'; // loopback address: 127.0.0.1
 app.listen(PORT,DOMAIN,()=>{
     console.log(`🖥 Server is listening on http://${DOMAIN}:${PORT}`)
 })
+
+
+
+
+
+
+
+
