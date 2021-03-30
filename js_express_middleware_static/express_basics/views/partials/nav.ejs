@@ -16,6 +16,26 @@
           <li class="nav-item">
             <a class="nav-link" href="/survey">Survey</a>
           </li>
+          
+              <% if (loggedInUserName){ %> 
+                <li class="nav-item">
+                <a class="nav-link" href="#"></a><%= loggedInUserName  %> </a>
+            </li>
+            <li class="nav-item">
+            <form action='/sign_out' method="POST" class="form-inline">
+                <button type="submit" class='btn btn-outline-dark'>Sign Out</button>
+            </form>
+        </li>
+                <% } else { %> 
+                    <li class="nav-item">
+          <form action='/sign_in' method="POST" class="d-flex"> 
+              <input type="text" name="username" placeholder="Username..." class="form-control mr-2">
+              <button type="submit" class='btn btn-outline-dark'>Sign In</button>
+          </form>
+        </li>
+          <% } %> 
+        </li>
+
         </ul>
       </div>
     </div>

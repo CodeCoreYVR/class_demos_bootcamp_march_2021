@@ -1,6 +1,8 @@
 const express=require('express'); //returns a function that returns instance of an express app.
 const logger=require('morgan');
 const path=require('path');
+const cookieParser=require('cookie-parser');//cookie-parser is a middle, that modifies the response and request objects that are given to all the routes. It adds a property to the "request" object named as 'cookies' which is again a object of key value pairs.
+// In addition to this it also adds a methoto "response" object called 'cookie()' which will be used to set the cookies.
 
 const app=express();// The app variable reference in index.js is an object with bunch of methods to cofigure our app, some common method that we use are :
 
@@ -17,6 +19,10 @@ app.patch
 app.delete
 */
 // path.join('/','user','naveed'); //returned => '/user/naveed'
+app.use(express.urlencoded({extended:true}));
+// this is a middleware that will decode the data that was submiited by the POST HTTB verb
+// When the "extend" option is set to tru it will allow to form the data to take shape of an opbect or arrays. But if it is set to false we will not get string of data.
+//  it will modify the request object given to routes by addin a property to it and named it as 'body'. So 'request.body' will be an object containing the data from our form.
 
 const pathToStaticAssets=path.join(__dirname,'public')
 app.use(express.static(pathToStaticAssets));
@@ -31,12 +37,28 @@ app.use((req,res,next)=>{
 
 app.set('view engine','ejs');
 app.set('views','views')
+
+app.use(cookieParser()); 
+
+app.use((req,res,next)=>{
+    console.log('cookies:', req.cookies);
+    const username= req.cookies.username; // Fetching username from cookies
+
+    res.locals.loggedInUserName=username || '';
+    // 👆🏻 This is how we set properties on "response.locals" to create a variable that are global
+    // and are available to all rendered templates
+    next();
+})
+
 // __________
 // Routes
 // __________
+const COOKIE_MAX_AGE= 24 * 7 * 60 * 60 * 1000 // A week in milliseconds
 app.get('/',(request,response)=>{
     //your code here
     // response.send('<h1>Welcome</h1>');
+    response.cookie("myCookie", 'Value_of_cookies',{maxAge: COOKIE_MAX_AGE});
+
     response.render('welcome',{
         title: 'Welcome to Meme Page',
         memes:[
@@ -67,6 +89,26 @@ app.get('/submit',(req,res)=>{
         message:message
     });
 });
+app.post('/sign_in',(req,res)=>{
+    const params=req.body;
+    // 'req.body' is only available if the "urlencoded" middleware is being used.
+    //  and it will contain data from submitted form.
+    
+    res.cookie('username', params.username,{maxAge:COOKIE_MAX_AGE})
+    // We are usinf res.cookie method to send cookie to broweser and this is added by cookie parse as a middleware
+    res.redirect('/'); // In this case the browser will send user to welcome page(/)
+    // Like 'response.send' and 'response.render', we have response.redirect
+    // it termintates the response wit ha redirect status code and a location(URL)
+    // when the browser receives redirect response it makes the followup request to that provided URL.
+
+});
+app.post('/sign_out',(req,res)=>{
+    // we use "response.clearCookie" to remove the specific cookie with the cookie-name
+    // and in this case we are removing the username from the cookies from the browser.
+    res.clearCookie('username');
+    res.redirect('/')
+})
+
 // _______________
 // RUN SERVER 
 // _______________
