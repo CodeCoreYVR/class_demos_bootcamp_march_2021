@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("posts",t=>{
       t.increments('id');
-      t.string('ttile');
+      t.string('title');
       t.text('content');
       t.integer('viewCount');
       t.string('tags');

@@ -2,14 +2,15 @@
   "name": "express_basics",
   "version": "1.0.0",
   "description": "express first project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon",
-    "without_nodemon": "node index.js",
+    "without_nodemon": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:create":"createdb -e express-rest-articles",
-    "db:drop":"dropdb -e express-rest-articles",
-    "db:migrate":"knex migrate:latest"
+    "db:create": "createdb -e express-rest-articles",
+    "db:drop": "dropdb -e express-rest-articles",
+    "db:migrate": "knex migrate:latest",
+    "db:seed":"knex seed:run"
   },
   "keywords": [
     "express",
@@ -27,6 +28,7 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "faker": "^5.5.2",
     "nodemon": "^2.0.7"
   }
 }
