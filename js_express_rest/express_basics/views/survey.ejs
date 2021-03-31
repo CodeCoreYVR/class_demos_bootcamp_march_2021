@@ -1,0 +1,44 @@
+<%- include("./partials/header.ejs")%>
+        <form action='/submit'>
+            <div>
+                <label for='fullName'>What is your name?</label><br>
+                <input type="text" id='fullName' name='fullName'/>
+            </div>
+            <div>
+                <label for='favouriteColor'>What is your favourites Color?</label><br>
+                <input type='color' id='favouriteColor' name='favouritColor'/>
+            </div>
+            <div>
+                <label for='message'>What's in you mind?</label><br>
+                <textarea id='message' name='message' cols='60' rows='5'></textarea>
+            </div>
+            <div>
+                <label>What's your favourite day of the week?</label>
+                <% const days=[
+                    'Sunday',
+                    'Monday', 
+                    'Tuesday', 
+                    'Wednesday', 
+                    'Thursday', 
+                    'Friday',
+                    'Saturday'] %> 
+                    <% for (let option of days) {%>
+                       <br> <input type='radio' name='favouriteDay' id="<%= option %>"
+                        value='<%= option %>'>
+                        <label for='<%= option %>'><%= option%></label>
+                        <% } %>
+            </div>
+            <input type='submit' value='Send'>
+
+        </form>
+
+    <%- include('./partials/footer.ejs') %>
+
+
+
+
+
+
+
+
+    
