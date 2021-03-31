@@ -1,4 +1,4 @@
-const environment= process.env.NODE_ENV || 'developement';
+// const environment= process.env.NODE_ENV || 'developement';
 // 👆🏻 set the environment
 const config=require("../knexfile").development;
 // // 👆🏻 load the exported configuration from knexfile

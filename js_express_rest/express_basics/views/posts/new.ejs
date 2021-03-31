@@ -1,0 +1,16 @@
+<%- include('../partials/header.ejs') %>
+<h1>New Post</h1>
+<form method="POST" action='/posts'>
+    <div class='form-group'>
+        <input type="text" class="form-control" name='title' placeholder="Enter the title"/>
+    </div>
+    <div class='form-group'>
+        <input type="url" class="form-control" name='imageUrl' placeholder="e.g: http//imgur.com/myPic.jpg"/>
+    </div>
+    <div class='form-group'>
+        <textarea class="form-control" name='content' placeholder="Wha are your thoughts? "></textarea>
+        
+    </div>
+    <input type="submit" class="btn btn-outline-success" value='Submit'/>
+</form>
+<%- include('../partials/footer.ejs') %>

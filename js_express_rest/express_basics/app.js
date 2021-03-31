@@ -1,6 +1,7 @@
 const express=require('express'); //returns a function that returns instance of an express app.
 const logger=require('morgan');
 const path=require('path');
+const methodOverride= require('method-override');
 const cookieParser=require('cookie-parser');//cookie-parser is a middle, that modifies the response and request objects that are given to all the routes. It adds a property to the "request" object named as 'cookies' which is again a object of key value pairs.
 // In addition to this it also adds a methoto "response" object called 'cookie()' which will be used to set the cookies.
 
@@ -49,6 +50,18 @@ app.use((req,res,next)=>{
     // and are available to all rendered templates
     next();
 })
+
+app.use(methodOverride((req,res)=>{
+    if(req.body && req.body._method){
+        const method=req.body._method;
+        // This modifies the request object 
+        // it changes it from a POST request 
+        // to whatever the value for _method was 
+        // within the form that was submitted
+
+        return method;
+    }
+}))
 
 // __________
 // Routes
