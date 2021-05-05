@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Doggo Arena</title>
+    <link
+      rel="stylesheet"
+      href="css/master.css"
+      type="text/css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <h1 class="title">Become a fighter!</h1>
+    <div class="application">
+      <div id="application-preview">
+        <div class="doggo blank">
+          <h1>Aplicant Preview</h1>
+        </div>
+      </div>
+
+      <form action="/" method="POST" id="application-form">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div>
+          <label for="picture-url">Picture Url</label>
+          <input type="text" name="picture-url" id="picture-url" />
+        </div>
+        <div>
+          <label for="team-name">Team Name</label>
+          <input type="text" name="team-name" id="team-name" />
+        </div>
+        <div>
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+
+    <div class="teams">
+      <div class="team salmon">
+        <h1 class="title">Team Salmon</h1>
+        <div class="roster">
+          <div id="toxic-tim" class="doggo fighter">
+            <h1>Toxic Tim</h1>
+          </div>
+          <div id="bumble-bertha" class="doggo fighter">
+            <h1>Bumble Bertha</h1>
+          </div>
+          <div id="nina-the-ninja" class="doggo fighter">
+            <h1>Nina The Ninja</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="team teal">
+        <h1 class="title">Team Teal</h1>
+        <div class="roster">
+          <div id="inbread-dog" class="doggo fighter">
+            <h1>In-Bread Dog</h1>
+          </div>
+          <div id="larry-the-lion" class="doggo fighter">
+            <h1>Larry The Lion</h1>
+          </div>
+          <div id="moneybags-michael" class="doggo fighter">
+            <h1>Moneybags Michael</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/main.js" type="text/javascript"></script>
+  </body>
+</html>
