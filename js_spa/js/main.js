@@ -21,8 +21,39 @@ const Question = {
             //normally we want it in some sort of text format, but now we want it in json
             //res object has a method .json() that will parse the body of res into json format
         })
+    },
+
+    create(params){
+        return fetch(`${BASE_URL}/questions`, {
+            method: 'POST',
+            credentials: 'include', //need this for cookies
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(params)
+        }).then((res) => res.json());
     }
 }
+
+//Sign In AJAX helper
+const Session = {
+    create(params){
+        return fetch(`${BASE_URL}/session`, {
+          method: 'POST',
+          credentials: 'include', //need this for cookies to be allowed to be sent cross-origin
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(params)  
+        }).then(res => res.json())
+    }
+}
+
+//Hacky Sign-in/ "Mock" sign in
+Session.create({
+    email: 'js@winterfell.gov',
+    password: 'supersecret'
+})
 
 
 Question.index()
@@ -37,4 +68,23 @@ Question.index()
             </li>
             `
         }).join('');
+})
+
+const newQuestionForm = document.querySelector('#new-question-form');
+newQuestionForm.addEventListener('submit', (event) =>{
+    //remember that submit has some default behaviours we want to prevent
+    event.preventDefault();
+    //grab form DOM node
+    const form = event.currentTarget
+    //grab all the data from the form
+    const formData = new FormData(form);
+    const newQuestionParams = {
+        title: formData.get('title'),
+        body: formData.get('body')
+    }
+    Question.create(newQuestionParams)
+    .then(data => {
+        console.log(data)
     })
+})
+
