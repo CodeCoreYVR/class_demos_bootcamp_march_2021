@@ -32,7 +32,27 @@ const Question = {
             },
             body: JSON.stringify(params)
         }).then((res) => res.json());
-    }
+    },
+    one(id) {
+      return fetch(`${BASE_URL}/questions/${id}`)
+        .then(res => res.json())
+    },
+    update(id, params) {
+      return fetch(`${BASE_URL}/questions/${id}`, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(params)
+      }).then(res => res.json())
+    },
+    destroy(id) {
+      return fetch(`${BASE_URL}/questions/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+    },
 }
 
 //Sign In AJAX helper
@@ -55,19 +75,106 @@ Session.create({
     password: 'supersecret'
 })
 
+function navigateTo(id) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active')
+  })
 
-Question.index()
-    .then(questions => {
-        //declare a container for the list of questions
-        const questionsContainer = document.querySelector('.question-list');
-        //iterate through each question and each question will return a string list item
-        questionsContainer.innerHTML = questions.map(q => {
-            return `
-            <li>
-                ${q.id} - ${q.title}
-            </li>
-            `
-        }).join('');
+  document.querySelector(`.page#${id}`).classList.add('active')
+  
+  document.querySelectorAll('a.item').forEach(page => {
+    page.classList.remove('active')
+  })
+
+  const navLink = document.querySelector(`a[data-target=${id}]`)
+  if (navLink) navLink.classList.add('active')
+}
+
+const navbar = document.querySelector('.menu.navbar')
+
+navbar.addEventListener('click', event => {
+  const navLink = event.target.closest('a')
+
+  if (navLink) {
+    event.preventDefault()
+    const pageId = navLink.dataset.target
+    navigateTo(pageId)
+  }
+})
+
+const questionsContainer = document.querySelector('.question-list');
+
+function loadQuestions() {
+  Question.index()
+      .then(questions => {
+          //declare a container for the list of questions
+          //iterate through each question and each question will return a string list item
+          questionsContainer.innerHTML = questions.map(q => {
+              return `
+              <li>
+                <a class="question-link" data-id="${q.id}" href="#">
+                  ${q.id} - ${q.title}
+                </a>
+              </li>
+              `
+          }).join('');
+  })
+}
+
+function renderQuestionShow(id) {
+  Question
+    .one(id)
+    .then(({ id, title, body, author, like_count }) => {
+      questionShowPage.innerHTML = `
+        <h2>${title}</h2>
+        <p>${body}</p>
+        <small>Authored by: ${author.full_name}</small><br>
+        <small>${like_count} likes</small>
+        <div>
+          <button data-action="edit" data-id="${id}" href="#">Edit</button>
+          <button data-action="delete" data-id="${id}" href="#">Delete</button>
+        </div>
+      `
+      navigateTo('question-show')
+    })
+}
+
+loadQuestions()
+
+const questionShowPage = document.querySelector('#question-show')
+
+questionsContainer.addEventListener('click', event => {
+  event.preventDefault()
+  if (event.target.matches('a.question-link')) {
+    const questionId = event.target.dataset.id
+    renderQuestionShow(questionId)
+  }
+})
+
+questionShowPage.addEventListener('click', event => {
+  event.preventDefault()
+  const { dataset } = event.target
+  const questionId = dataset.id
+  const action = dataset.action
+
+  if (action === 'edit') {
+    Question.one(questionId).then(({ id, title, body }) => {
+      // populate the edit question form
+      document.querySelector('#edit-question-form input[name=title]').value = title
+      document.querySelector('#edit-question-form textarea[name=body]').value = body
+      document.querySelector('#edit-question-form input[name=id]').value = id
+      navigateTo('question-edit')
+    })
+  }
+
+  if (action === 'delete') {
+    Question
+      .destroy(questionId)
+      .then(() => {
+        loadQuestions()
+        navigateTo('question-index')
+      })
+  }
 })
 
 const newQuestionForm = document.querySelector('#new-question-form');
@@ -83,8 +190,44 @@ newQuestionForm.addEventListener('submit', (event) =>{
         body: formData.get('body')
     }
     Question.create(newQuestionParams)
-    .then(data => {
-        console.log(data)
+    .then(({ id }) => {
+        loadQuestions()
+        renderQuestionShow(id)
+        navigateTo('question-show')
     })
 })
+
+const editQuestionForm = document.querySelector('#edit-question-form');
+editQuestionForm.addEventListener('submit', (event) =>{
+    event.preventDefault();
+
+    const form = event.currentTarget
+    const formData = new FormData(form);
+    const questionParams = {
+        title: formData.get('title'),
+        body: formData.get('body')
+    }
+    Question.update(formData.get('id'), questionParams)
+    .then(({ id }) => {
+        loadQuestions()
+        renderQuestionShow(id)
+        navigateTo('question-show')
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
