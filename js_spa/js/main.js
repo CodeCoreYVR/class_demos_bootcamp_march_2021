@@ -191,6 +191,7 @@ newQuestionForm.addEventListener('submit', (event) =>{
     }
     Question.create(newQuestionParams)
     .then(({ id }) => {
+        form.reset()
         loadQuestions()
         renderQuestionShow(id)
         navigateTo('question-show')
